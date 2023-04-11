@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from rest_framework import serializers
+from rest_framework import generics
 from .models import Post
+from .serializers import PostSerializer
 
 
-class PostSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Post
-        fields = ['id', 'title', 'body', 'author', 'created_at']
+class CreatePostView(generics.CreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    print(PostSerializer.data)
