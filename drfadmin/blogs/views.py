@@ -7,7 +7,6 @@ from .serializers import PostSerializer
 class CreatePostView(generics.CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    # print(PostSerializer.data)
 
 
 class ListPostsView(generics.ListAPIView):
@@ -16,6 +15,12 @@ class ListPostsView(generics.ListAPIView):
 
 
 class PostDetailView(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    lookup_field = 'id'
+
+
+class PostUpdateView(generics.UpdateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     lookup_field = 'id'
